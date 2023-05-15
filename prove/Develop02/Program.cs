@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 class Program
 {
 
@@ -9,8 +9,9 @@ class Program
         string userChoice = "";
 
         //Object of class PromptGenerator and Entry
-        PromptGenerator listofQuestions = new PromptGenerator();
+        
         Entry userResponse = new Entry();
+        PromptGenerator listofQuestions = new PromptGenerator();
 
         Console.WriteLine("Welcome to the Journal Program!");
 
@@ -30,7 +31,7 @@ class Program
             if(userChoice == "1") {
             listofQuestions.RandomQuestions();
             userResponse._response = Console.ReadLine();
-            userResponse._prompt = Console.ReadLine();
+            
 
             
 
@@ -40,9 +41,11 @@ class Program
 
 
 
+
         }
 
-    
+
+        
         
     }
 }
