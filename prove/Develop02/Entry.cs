@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections.Generic;
 public class Entry
 {
     //Hold data
@@ -11,7 +11,9 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"{_date} - Prompt: ({_prompt})");
+        //Console.WriteLine($"{_date} - Prompt: ({_prompt})");
+        //Console.WriteLine($"{_response}");
+        Console.WriteLine($"Prompt: ({_prompt})");
         Console.WriteLine($"{_response}");
 
     }
