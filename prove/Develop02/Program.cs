@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+
 class Program
 {
 
@@ -29,7 +29,12 @@ class Program
         userChoice = Console.ReadLine();
 
             if(userChoice == "1") {
-            listofQuestions.RandomQuestions();
+                //listofQuestions.RandomQuestions();
+                var random = new Random();
+                List<string> list = listofQuestions.questions;
+                int index = random.Next(list.Count);
+                Console.WriteLine(list[index]);
+            //List<string> questions = listofQuestions.questions;
             userResponse._response = Console.ReadLine();
             
 
