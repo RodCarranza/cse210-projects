@@ -10,8 +10,9 @@ class Program
 
         //Object of class PromptGenerator and Entry
         
-        Entry userResponse = new Entry();
+        Entry userInfo= new Entry();
         PromptGenerator listofQuestions = new PromptGenerator();
+        
 
         Console.WriteLine("Welcome to the Journal Program!");
 
@@ -29,19 +30,30 @@ class Program
         userChoice = Console.ReadLine();
 
             if(userChoice == "1") {
-                //listofQuestions.RandomQuestions();
+
+                //Date
+                DateTime theCurrentTime = DateTime.Now;
+                string dateText = theCurrentTime.ToShortDateString();
+                userInfo._date = dateText;
+
+
+                //Prompt: Random questions being prompted
+                
                 var random = new Random();
-                List<string> list = listofQuestions.questions;
+                //List<string> list = listofQuestions.randomQuestions;
+                var list = listofQuestions.randomQuestions;
                 int index = random.Next(list.Count);
                 Console.WriteLine(list[index]);
-            //List<string> questions = listofQuestions.questions;
-            userResponse._response = Console.ReadLine();
-            
+                
+                
 
+
+                //Response
+                userInfo._response = Console.ReadLine();
             
 
         } else if (userChoice == "2") {
-            userResponse.Display();
+            userInfo.Display();
         }
 
 
