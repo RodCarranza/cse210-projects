@@ -1,5 +1,7 @@
 using System;
 
+
+
 class Program
 {
 
@@ -10,7 +12,7 @@ class Program
 
         //Objects
         
-        Entry userInfo = new Entry();
+        
         PromptGenerator promptQuestion = new PromptGenerator();
         Journal myJournal = new Journal();
         
@@ -32,6 +34,9 @@ class Program
 
             if(userChoice == "1") {
 
+                //Object
+                Entry userInfo = new Entry();
+
                 //Date
                 DateTime theCurrentTime = DateTime.Now;
                 string dateText = theCurrentTime.ToShortDateString();
@@ -48,15 +53,21 @@ class Program
 
                 //Response
                 userInfo._response = Console.ReadLine();
+
+                //Adding information
+                myJournal.AddEntry(userInfo);
             
 
         } else if (userChoice == "2") {
-            myJournal._entries.Add(userInfo);
             myJournal.Display();
             
+        } else if (userChoice == "4") {
+            
+            //myJournal.SaveToFile(userInfo);
         }
 
         }
+    
        
         
     }
