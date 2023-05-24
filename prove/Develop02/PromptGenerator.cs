@@ -15,3 +15,5 @@ public class PromptGenerator
     "If i had the chance to do something I was unable to do today, what would it be?",
     "How well did I do my job today?"};
 }
+
+// More methods here.
