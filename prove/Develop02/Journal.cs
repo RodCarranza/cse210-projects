@@ -9,7 +9,7 @@ public class Journal
 { 
     public List<Entry> _entries =  new List<Entry>();
     
-  public void AddEntry (Entry info)  {
+        public void AddEntry (Entry info)  {
 
         _entries.Add(info);  
 
@@ -27,21 +27,39 @@ public class Journal
 
     // Saving to a File
 
-    public void SaveToFile(Entry info2) {
+    public void SaveToFile(List<Entry> _entries) {
 
         string fileName = "myFile.txt";
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-            // You can use the $ and include variables just like with Console.WriteLine
-            
-            outputFile.WriteLine($"{info2}");
+
+            foreach (Entry entry in _entries) {
+                outputFile.WriteLine($"{entry._date} Prompt: {entry._prompt}");
+                outputFile.WriteLine(entry._response);
+
+            }
         }
 
     }
 
+    /*public void ReadFromFile()
+    {
+        string fileName = "myFile.txt";
+        string[] lines = System.IO.File.ReadAllLines(fileName);
+        foreach (string line in lines)
+    {
+            string[] parts = line.Split(",");
 
-}
+            string userDate = parts[0];
+            string userPrompt = parts[1];
+            string userResponse = parts[1];                  
+    }   */
+
+
+    }
+
+
 
     // Adding an entry
     // Displaying all the entries
