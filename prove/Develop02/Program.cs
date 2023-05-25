@@ -1,22 +1,15 @@
 using System;
 
-
-
 class Program
 {
-
     static void Main(string[] args)
     {
-        
         string userChoice = "";
 
         //Objects
-        
-        
-        PromptGenerator promptQuestion = new PromptGenerator();
+        PromptGenerator userInput = new PromptGenerator();
         Journal myJournal = new Journal();
         
-
         Console.WriteLine("Welcome to the Journal Program!");
 
         while(userChoice != "5") 
@@ -33,42 +26,25 @@ class Program
         userChoice = Console.ReadLine();
 
             if(userChoice == "1") {
-
-                //Object
-                Entry userInfo = new Entry();
-
-                //Date
-                DateTime theCurrentTime = DateTime.Now;
-                string dateText = theCurrentTime.ToShortDateString();
-                userInfo._date = dateText;
-
-
-                //Prompt random question
-                
-                var random = new Random();
-                var list = promptQuestion.questions;
-                int index = random.Next(list.Count);
-                userInfo._prompt = list[index];
-                Console.WriteLine(userInfo._prompt);
-
-                //Response
-                userInfo._response = Console.ReadLine();
-
-                //Adding information
-                myJournal.AddEntry(userInfo);
+               // Call method and add inputs to the list
+               myJournal.AddEntry(userInput.PromptQuestion());
             
-
         } else if (userChoice == "2") {
+            // Display entries
             myJournal.Display();
-            
+
+        } else if (userChoice == "3") {
+
+            // Call method to read from a file
+            //myJournal.ReadFromFile();
+
+
         } else if (userChoice == "4") {
-            
-            //myJournal.SaveToFile(userInfo);
-        }
+            // Call method to save to a file
+            myJournal.SaveToFile(myJournal._entries);
 
         }
-    
-       
-        
+    }
+
     }
 }
