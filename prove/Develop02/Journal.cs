@@ -1,32 +1,38 @@
 using System;
 using System.IO; //File
 using System.Collections.Generic;
-
-
 public class Journal
-
-
 { 
     public List<Entry> _entries =  new List<Entry>();
-    
+
         public void AddEntry (Entry info)  {
 
         _entries.Add(info);  
 
     }
 
-    
     public void Display() 
+
     {
+       List<Entry> new_entries = LoadFromFile();
+        
+        
+       foreach (Entry e in new_entries) {
+
+        Console.WriteLine(e._date);
+            //Console.WriteLine(e._prompt);
+            //Console.WriteLine(e._response);
+       }
+
         foreach (Entry entry in _entries)
         {
             entry.Display();
-        }
+        }//return and receive value to the program class.
 
-    }
+}
+    
 
     // Saving to a File
-
     public void SaveToFile(List<Entry> _entries) {
 
         Console.WriteLine("What is the filename?");
@@ -45,21 +51,35 @@ public class Journal
 
     }
 
-    /*public void ReadFromFile()
+    public List<Entry> LoadFromFile() 
     {
-        string fileName = "myFile.txt";
+        List<Entry> _entries = new List<Entry>();
+        Console.WriteLine("What is the filename?");
+        string fileName = Console.ReadLine();
+
         string[] lines = System.IO.File.ReadAllLines(fileName);
-        foreach (string line in lines)
-    {
-            string[] parts = line.Split(",");
 
-            string userDate = parts[0];
-            string userPrompt = parts[1];
-            string userResponse = parts[1];                  
-    }   */
+        foreach(string line in lines) 
+        {
+
+            string [] parts = line.Split(",");
+
+            Entry new_entries = new Entry();
+
+            new_entries._date = parts[0];
+            // Not sure why it should be one thing here.
+            // If I put another one, the data in the file gets duplicate. 
+
+            _entries.Add(new_entries);
 
 
+
+        }
+
+        return _entries;
     }
+}
+
 
 
 
