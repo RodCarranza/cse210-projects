@@ -25,26 +25,46 @@ class Program
         Console.Write("What would you like to do? ");
         userChoice = Console.ReadLine();
 
-            if(userChoice == "1") {
-               // Call method and add inputs to the list
-               myJournal.AddEntry(userInput.PromptQuestion());
+        if(userChoice == "1") {
+
+            // 1. Write
+            // Add inputs to the list
+            myJournal.AddEntry(userInput.PromptQuestion());
             
         } else if (userChoice == "2") {
+
+            // 2. Display
             // Display entries
             myJournal.Display();
 
         } else if (userChoice == "3") {
 
+            // 3. Load
             // Call method to read from a file
-            //myJournal.ReadFromFile();
+            myJournal.LoadFromFile();
 
 
         } else if (userChoice == "4") {
-            // Call method to save to a file
-            myJournal.SaveToFile(myJournal._entries);
 
-        }
+            // Save to a file
+            // Call method to save to a file
+           myJournal.SaveToFile(myJournal._entries);
+
+
+           
+           //List<Entry> new_entries = myJournal.LoadFromFile();
+        
+           /*foreach (Entry e in new_entries) {
+
+           Console.WriteLine(e._date);
+            Console.WriteLine(e._prompt);
+            Console.WriteLine(e._response);
+
+           }*/
+
     }
 
+    }
     }
 }
+        
