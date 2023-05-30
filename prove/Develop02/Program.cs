@@ -48,21 +48,9 @@ class Program
 
             // Save to a file
             // Call method to save to a file
-           myJournal.SaveToFile(myJournal._entries);
+           myJournal.SaveToFile();
 
-
-           
-           //List<Entry> new_entries = myJournal.LoadFromFile();
-        
-           /*foreach (Entry e in new_entries) {
-
-           Console.WriteLine(e._date);
-            Console.WriteLine(e._prompt);
-            Console.WriteLine(e._response);
-
-           }*/
-
-    }
+    } 
 
     }
     }
