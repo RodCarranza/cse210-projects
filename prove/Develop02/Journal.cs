@@ -4,36 +4,22 @@ using System.Collections.Generic;
 public class Journal
 { 
     public List<Entry> _entries =  new List<Entry>();
-
         public void AddEntry (Entry info)  {
 
         _entries.Add(info);  
-
     }
 
     public void Display() 
-
     {
-       List<Entry> new_entries = LoadFromFile();
-        
-        
-       foreach (Entry e in new_entries) {
-
-        Console.WriteLine(e._date);
-            //Console.WriteLine(e._prompt);
-            //Console.WriteLine(e._response);
-       }
-
+ 
         foreach (Entry entry in _entries)
         {
             entry.Display();
-        }//return and receive value to the program class.
-
+        }
 }
-    
 
     // Saving to a File
-    public void SaveToFile(List<Entry> _entries) {
+    public void SaveToFile() {
 
         Console.WriteLine("What is the filename?");
 
@@ -51,37 +37,35 @@ public class Journal
 
     }
 
-    public List<Entry> LoadFromFile() 
+    public void LoadFromFile() 
     {
-        List<Entry> _entries = new List<Entry>();
         Console.WriteLine("What is the filename?");
         string fileName = Console.ReadLine();
 
+        //Opens the text file, reads all the lines and stores into a string array, and then closes the file.
         string[] lines = System.IO.File.ReadAllLines(fileName);
-
+        
+        // Iterates in the text file line by line.
         foreach(string line in lines) 
         {
+            //Creates another array, but this one splits the strings into substrings 
+            string [] parts = line.Split("|"); //Delimiter is "|"
 
-            string [] parts = line.Split(",");
+            string date = parts[0];
 
-            Entry new_entries = new Entry();
-
+            Entry new_entries = new Entry ();
             new_entries._date = parts[0];
-            // Not sure why it should be one thing here.
-            // If I put another one, the data in the file gets duplicate. 
-
-            _entries.Add(new_entries);
-
-
+            new_entries._prompt = parts[0];
+            new_entries._response = parts[0];
+            _entries.Add(new_entries); 
 
         }
 
-        return _entries;
+        
     }
+
+
 }
-
-
-
 
     // Adding an entry
     // Displaying all the entries
