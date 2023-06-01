@@ -27,43 +27,38 @@ public class Journal
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
-
             foreach (Entry entry in _entries) {
-                outputFile.WriteLine($"{entry._date} Prompt: {entry._prompt}");
-                outputFile.WriteLine($"{entry._response}\n");
-
+                outputFile.WriteLine($"{entry._date} - Prompt: {entry._prompt} - {entry._response}");
             }
         }
 
     }
 
     public void LoadFromFile() 
+
     {
         Console.WriteLine("What is the filename?");
         string fileName = Console.ReadLine();
 
         //Opens the text file, reads all the lines and stores into a string array, and then closes the file.
-        string[] lines = System.IO.File.ReadAllLines(fileName);
+        string [] lines = System.IO.File.ReadAllLines(fileName);
+
         
         // Iterates in the text file line by line.
-        foreach(string line in lines) 
+        foreach(string line in lines)
+        
         {
-            //Creates another array, but this one splits the strings into substrings 
-            string [] parts = line.Split("|"); //Delimiter is "|"
+            string [] parts = line.Split("-");
 
             string date = parts[0];
+            string prompt = parts[1];
+            string response = parts[2];
 
-            Entry new_entries = new Entry ();
-            new_entries._date = parts[0];
-            new_entries._prompt = parts[0];
-            new_entries._response = parts[0];
-            _entries.Add(new_entries); 
-
+            _entries.Add(new Entry() {_date = date, _prompt = prompt, _response = response});
+  
         }
-
-        
+  
     }
-
 
 }
 
