@@ -46,13 +46,11 @@ class Program
 
         } else if (userChoice == "4") {
 
-            // Save to a file
+            // 4. Save
             // Call method to save to a file
            myJournal.SaveToFile();
-
     } 
 
     }
     }
 }
-        
