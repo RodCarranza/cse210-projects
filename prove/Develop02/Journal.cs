@@ -8,10 +8,8 @@ public class Journal
 
         _entries.Add(info);  
     }
-
     public void Display() 
     {
- 
         foreach (Entry entry in _entries)
         {
             entry.Display();
@@ -28,12 +26,11 @@ public class Journal
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
             foreach (Entry entry in _entries) {
-                outputFile.WriteLine($"{entry._date} - Prompt: {entry._prompt} - {entry._response}");
+                outputFile.WriteLine($"{entry._date} | {entry._prompt} |{entry._response}");
             }
         }
 
     }
-
     public void LoadFromFile() 
 
     {
@@ -43,28 +40,24 @@ public class Journal
         //Opens the text file, reads all the lines and stores into a string array, and then closes the file.
         string [] lines = System.IO.File.ReadAllLines(fileName);
 
-        
         // Iterates in the text file line by line.
         foreach(string line in lines)
         
         {
-            string [] parts = line.Split("-");
+            string [] parts = line.Split("|");
 
             string date = parts[0];
             string prompt = parts[1];
             string response = parts[2];
 
             _entries.Add(new Entry() {_date = date, _prompt = prompt, _response = response});
-  
         }
   
     }
 
 }
-
     // Adding an entry
     // Displaying all the entries
     // The Journal display method could iterate through all Entry objects and call the Entry display method
     // Saving to a file *
     // Loading from a file *
-
