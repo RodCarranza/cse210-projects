@@ -1,5 +1,7 @@
 using System;
 
+//What I did to show creativity was save and load the data from a JSON file instead of a TXT file.
+
 class Program
 {
     static void Main(string[] args)
