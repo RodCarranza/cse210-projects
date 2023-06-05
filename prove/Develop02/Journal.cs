@@ -1,6 +1,9 @@
 using System;
 using System.IO; //File
 using System.Collections.Generic;
+using System.Text.Json; // JSON
+using System.Text.Json.Serialization;
+
 public class Journal
 { 
     public List<Entry> _entries =  new List<Entry>();
@@ -23,34 +26,29 @@ public class Journal
 
         string fileName = Console.ReadLine();
 
-        using (StreamWriter outputFile = new StreamWriter(fileName))
-        {
-            foreach (Entry entry in _entries) {
-                outputFile.WriteLine($"{entry._date} | {entry._prompt} |{entry._response}");
-            }
-        }
-
+        List<Entry> data = new List<Entry>();
+    
+        foreach(Entry entry in _entries) {
+            data.Add(entry);
+        
+        string jsonString = JsonSerializer.Serialize(data);
+        File.WriteAllText(fileName, jsonString);           
     }
-    public void LoadFromFile() 
+
+}
+        
+    public void LoadFromFile()
 
     {
         Console.WriteLine("What is the filename?");
         string fileName = Console.ReadLine();
 
-        //Opens the text file, reads all the lines and stores into a string array, and then closes the file.
-        string [] lines = System.IO.File.ReadAllLines(fileName);
+        string jsonString = File.ReadAllText(fileName);
 
-        // Iterates in the text file line by line.
-        foreach(string line in lines)
-        
-        {
-            string [] parts = line.Split("|");
+        var entryList = JsonSerializer.Deserialize<List<Entry>>(jsonString);
 
-            string date = parts[0];
-            string prompt = parts[1];
-            string response = parts[2];
-
-            _entries.Add(new Entry() {_date = date, _prompt = prompt, _response = response});
+        foreach(var entry2 in entryList) {
+            _entries.Add(new Entry() {_date = entry2._date, _prompt = entry2._prompt, _response = entry2._response});
         }
   
     }
@@ -61,3 +59,4 @@ public class Journal
     // The Journal display method could iterate through all Entry objects and call the Entry display method
     // Saving to a file *
     // Loading from a file *
+
