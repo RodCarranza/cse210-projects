@@ -8,7 +8,7 @@ class Program
 
         Reference reference = new Reference("Juan", 1, 15);
         
-        Scripture scripture = new Scripture(reference, "Esta es la escritura que debe aparecer en el programa.");
+        Scripture scripture = new Scripture(reference, "This is the scripture that should be displayed in the program");
 
         Console.WriteLine(scripture.GetRenderedText());
 
