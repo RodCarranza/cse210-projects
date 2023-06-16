@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 public class Scripture {
     
@@ -12,18 +13,47 @@ public class Scripture {
 
     private string _reference;
     private string _scripture;
-    private List<Word> words = new List<Word>();
+
+    //Constructor that accepts the reference and text of the scripture
 
     public Scripture(Reference reference, string scripture) {
         _reference = reference.GetFormattedReference();
         _scripture = scripture;
+        string[] arrayStrings = new string[]{_scripture};
+
+        //List of Word objects
+        List<Word> words = new List<Word>();
+
+        foreach(string word in arrayStrings) {
+            //splitting words by blank spaces
+            string [] parts= word.Split(" ");
+
+            for (int i = 0; i < parts.Length; i++) {
+                words.Add(new Word(parts[i]));
+            }
+
+        }
+        
     }
+
+    public void HideWords() {
+        Console.Write(_reference);
+        Console.Write($" {_scripture}");
+        Console.ReadLine();
+
+        Console.Clear();
+
+        }
+
+    public void IsCompletelyHidden() {
+
+        }
 
     public string GetRenderedText() {
         string fullScripture = $"{_reference} {_scripture}";
         return fullScripture;
     }
-        
-}
+    
 
+}
 
