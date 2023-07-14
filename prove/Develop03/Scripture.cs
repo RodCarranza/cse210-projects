@@ -47,7 +47,7 @@ public class Scripture
 
     public void HideWords() {
     //In charge of hiding selected words randomly.
-    for(int i = _initialization; i < _testCondition; i++)
+    for(int i = _initialization; i < _testCondition && i != _words.Count; i++)
     {
         _words[_integersList[i]].Hide();
     }
@@ -61,10 +61,9 @@ public class Scripture
         if (_words.All(checkWords => checkWords.IsHidden())) {
                 System.Environment.Exit(0);
         }
-
         return true;  
     }
-        
+
     public void GetRenderedText() {
             Console.Write($"{_reference} ");
             foreach(var word in _words) {
