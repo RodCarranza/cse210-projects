@@ -6,6 +6,7 @@ public class Word {
     */
     private string _words;
     private bool _isHidden;
+    
     public Word(string words) {
         _words = words;
         _isHidden = false;
