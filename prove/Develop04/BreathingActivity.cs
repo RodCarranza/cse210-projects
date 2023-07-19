@@ -10,6 +10,18 @@ public class BreathingActivity: Activity
 
     }
 
+    private void BreatheIn()
+    {
+        Console.Write("\nBreathe in...");
+        PauseWhileCountdown(4);
+    }
+
+    private void BreatheOut()
+    {
+        Console.Write("Now breathe out...");
+        PauseWhileCountdown(6);
+    }
+
     public void Breathing()
     {
         // Set the time of the breathing activity
@@ -18,30 +30,11 @@ public class BreathingActivity: Activity
 
         while(DateTime.Now < endTime)
         {
-        Console.Write("\nBreathe in...");
-        for(int i = 4; i > 0; i--) 
-        {
-            Console.Write(i);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
+            BreatheIn();
+            Console.WriteLine();
+            BreatheOut();
+            Console.WriteLine();
+
         }
-        Console.WriteLine(); 
-
-        Console.Write("Now breathe out...");
-        for(int i = 6; i > 0; i--) 
-        {
-            Console.Write(i);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
- 
-        }
-        Console.WriteLine();
-
-        } 
-
     }
- 
-    }
-    
-
-
+}
