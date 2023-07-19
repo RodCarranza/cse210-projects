@@ -28,37 +28,52 @@ public class ReflectingActivity: Activity
     : base (activityName, description)
     {
 
+    }
+
+    private string GetRandomPrompt()
+    {
+        var random = new Random();
+        var list = _prompts;
+        int index = random.Next(list.Count);
+        return $"--- {list[index]} ---\n";
 
     }
 
     public void DisplayPrompt()
     {
-        var random = new Random();
-        var list = _prompts;
-        int index = random.Next(list.Count);
-
         Console.WriteLine("Consider the following prompt:\n");
 
-        Console.WriteLine($"--- {list[index]} ---\n");
+        Console.WriteLine(GetRandomPrompt());
 
         Console.WriteLine("When you have something in mind, press enter to continue.");
 
-        Console.ReadLine(); 
+        Console.ReadLine();
 
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
         Console.Write($"You may begin in: ");
-        PauseWhileCountdown();
-        
+        PauseWhileCountdown(5);
     }
 
-    public void DisplayPromptQuestions()
+    private string GetRandomQuestion()
     {
         var random = new Random();
         var list = _promptQuestions;
         int index = random.Next(list.Count);
+  
+        return $"{list[index]} ";
+    }
+
+    public void DisplayPromptQuestion()
+    {
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(GetDurationSec());
         Console.Clear();
-        Console.Write(list[index] + " ");
-        PauseWhileSpinner();
+
+        while(DateTime.Now < endTime)
+        {
+            Console.Write(GetRandomQuestion());
+            PauseWhileSpinner(15);
+        }
 
     }
 
