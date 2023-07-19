@@ -72,7 +72,13 @@ public class Activity
 
     }
 
-    public void PauseWhileCountdnown() {
+    public void PauseWhileCountdown() {
+        for(int i = 5; i > 0; i--) 
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
 
     }
 
@@ -84,7 +90,7 @@ public class Activity
 
         Console.WriteLine("\nWell done!!");
         PauseWhileSpinner();
-        Console.WriteLine($"\nYou have completed another {_durationSec} seconds of the {_activityName} Activity");
+        Console.WriteLine($"\nYou have completed another {_durationSec} seconds of the {_activityName} Activity.");
         PauseWhileSpinner();
         
     }
