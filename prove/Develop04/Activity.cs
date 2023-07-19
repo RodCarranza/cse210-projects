@@ -1,6 +1,6 @@
 using System;
 
-public class Activity 
+public class Activity //Base class
 
 {
     private string _activityName;
@@ -12,7 +12,6 @@ public class Activity
         _activityName = activityName;
         _description = description;
         _durationSec = 0;
-
     }
 
     public int GetDurationSec()
@@ -20,7 +19,8 @@ public class Activity
         return _durationSec;
     }
 
-    public void DisplayStartingMsg() {
+    public void DisplayStartingMsg() 
+    {
         Console.WriteLine($"Welcome to the {_activityName} Activity.\n"); //Activity name
         Console.WriteLine($"This activity will help you {_description}\n"); //Description
         Console.Write($"How long, in seconds, would you like for your session? "); //Duration
@@ -30,7 +30,7 @@ public class Activity
         Console.WriteLine("Get ready...");
     }
 
-    public void PauseWhileSpinner() {
+    public void PauseWhileSpinner(int seconds) {
 
         //Animation
         List<string> spinnerAnimation = new List<string>();
@@ -46,7 +46,7 @@ public class Activity
 
         //Period of time for the animation
         DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddSeconds(5);
+        DateTime endTime = startTime.AddSeconds(seconds);
 
         int i = 0;
 
@@ -63,17 +63,14 @@ public class Activity
             if (i >= spinnerAnimation.Count) 
             {
                 i = 0;
-
            }
-
         }
 
         Console.WriteLine();
-
     }
 
-    public void PauseWhileCountdown() {
-        for(int i = 5; i > 0; i--) 
+    public void PauseWhileCountdown(int countdown) {
+        for(int i = countdown; i > 0; i--) 
         {
             Console.Write(i);
             Thread.Sleep(1000);
@@ -83,15 +80,11 @@ public class Activity
     }
 
     public void DisplayEndingMsg() {
-        /*
-         Well done!!
-         You have completed another X seconds of the X activity.
-        */
 
         Console.WriteLine("\nWell done!!");
-        PauseWhileSpinner();
-        Console.WriteLine($"\nYou have completed another {_durationSec} seconds of the {_activityName} Activity.");
-        PauseWhileSpinner();
+        PauseWhileSpinner(5);
+        Console.WriteLine($"You have completed another {_durationSec} seconds of the {_activityName} Activity.");
+        PauseWhileSpinner(5);
         
     }
 
